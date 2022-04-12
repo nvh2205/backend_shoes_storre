@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  api:
+    container_name: training_express_api
+    image: express_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /var/www/backend
+    volumes:
+      - ./:/var/www/backend
+    ports:
+      - '8000:8000'
+    command: ['sh', '-c', 'npm install && npm run serverstart']
+
+  mysql:
+    image: mysql:5.7.22
+    container_name: training_express_mysql
+    tty: true
+    ports:
+      - '13306:3306'
+    environment:
+      MYSQL_DATABASE: shoes_shop_db
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./mysql:/var/lib/mysql
+    command:
+      [
+        'mysqld',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci',
+      ]
+
+networks:
+  default:
+    name: training-network
