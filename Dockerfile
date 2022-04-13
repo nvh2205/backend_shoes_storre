@@ -1,6 +1,6 @@
 FROM node:14.18.1-alpine
 
-LABEL maintainer="tannn@miichisoft.com"
+LABEL maintainer="nvh2205@gmail.com"
 WORKDIR /var/www/backend
 
 ENV NODE_ENV=development

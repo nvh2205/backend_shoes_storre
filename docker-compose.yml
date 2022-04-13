@@ -2,7 +2,7 @@ version: '3'
 
 services:
   api:
-    container_name: training_express_api
+    container_name: api
     image: express_api
     build:
       context: .
@@ -16,7 +16,7 @@ services:
 
   mysql:
     image: mysql:5.7.22
-    container_name: training_express_mysql
+    container_name: db
     tty: true
     ports:
       - '13306:3306'
